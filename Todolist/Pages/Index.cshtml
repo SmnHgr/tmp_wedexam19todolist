@@ -1,0 +1,24 @@
+﻿@page
+@using Todolist.Services
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form asp-page="Index" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" asp-page-handler=""> <!-- TODO asp-age-handler -->
+    <input type="text" name="text" />
+    <button type="submit">Hinzufügen</button>
+</form>
+
+<ul>
+    @foreach (var todo in Model.TodoList)
+    {
+        <li>
+            <form asp-page="Index" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" asp-page-handler="Remove">
+                <label>"@todo.Text"</label>
+                <input hidden name="id" value="@todo.Id"/>
+                <button type="submit">Löschen</button>
+            </form>
+        </li>   
+    }
+</ul>
