@@ -13,7 +13,7 @@ namespace Todolist.Pages
     {
         private readonly ITodoService _todoService;
 
-        public List<Todo> TodoList { get; set; }
+        public IEnumerable<Todo> TodoList { get; set; }
 
         public IndexModel(ITodoService todoService)
         {
@@ -28,7 +28,7 @@ namespace Todolist.Pages
         public void OnPost(string text)
         {
             _todoService.AddTodo(text);
-            TodoList = _todoService.GetTodos().ToList();
+            TodoList = _todoService.GetTodos();
         }
 
         public void OnPostRemove(string id)
